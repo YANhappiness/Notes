@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>今天吃什么好呢！</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	ul{
+		width:600px;
+		margin:50px auto;
+		
+	}
+	ul li{
+		list-style-type:none;
+		width:180px;
+		height:200px;
+		display:inline-block;
+		border:1px solid red;
+		margin-left:-9px;
+		text-align:center;
+		line-height:200px;
+	}
+	div{
+		width:600px;
+		margin:0 auto;
+	}
+	button{
+		width:50px;
+		height:30px;
+		margin:20px 230px;
+	}
+	.active{
+		background-color:yellow;
+	}
+</style>
+</head>
+<body>
+    <div><button>点击</button></div>
+	<ul>
+		<li>白切鸡</li>
+		<li>烧鸭饭</li>
+		<li>桂林米粉</li>
+		<li>螺丝粉</li>
+		<li>老友粉</li>
+		<li>猪杂汤粉</li>
+		<li>隆江猪脚饭</li>
+		<li>手撕鸡</li>
+		<li>凤爪饭</li>
+	</ul>
+ <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var iNow=0;
+		var iNum=0;
+		var $li=$('li');
+		
+		$('button').click(function(){
+			// alert('1');
+			iNum=Math.floor(Math.random()*$li.length+$li.length);
+			var timer=setInterval(function(){
+				var lVue=$li.eq(iNow).html();
+				$('li').eq(iNow).attr('class','active').siblings().attr('class','');
+				iNum--;
+				if (iNum==0) {
+					clearInterval(timer);
+					//$('li').eq(iNow-1).attr('class','active').siblings().attr('class','');
+					alert('今天吃'+lVue+'~~');
+				}
+				iNow++;
+				if (iNow==$li.length) {
+					iNow=0;
+				}
+			},100);
+		});
+	});
+</script>
+</body>
+</html>
