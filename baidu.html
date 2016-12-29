@@ -1,103 +1,170 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>模仿百度</title>
+	<meta charset="UTF-8">
+	<title>仿百度首页</title>
+<style type="text/css">
+body{margin: 0;padding: 0}
+.header{height:100%;display: black;text-align: center;}
+#nav{
+	margin: 19px 20px 20px 5px;
+	right: 0;
+	top: 0;
+	display: inline-block;
+	width: 100%;
+}
 
-<!--百度首页-->
-<style>
-body{margin:0; padding:0;}
-.wrap{width:100%;}
-.header{width:100%; height:80px;}
-.mainbody{width:70%;height:620px;margin:0 auto;}
-.footer{width:640px;height:100px;margin:0 auto;}
-div div ul li{float:right;}
-.font1{color: #333;
-    font-weight: bold;
-    line-height: 24px;
-    margin-left: 20px;
-    font-size: 13px;}
-.font2{color: #333;
-    line-height: 24px;
-    margin-left: 20px;
-    font-size: 13px;}
-.font3{ 
-    display:block;
-    text-align:center;
-    font-size: 13px; 
-    width: 60px;
-    height: 24px;
-    line-height: 24px;
-	margin:0 10px 0 20px;
-	background:#3385ff; color:#fff;
-	text-decoration:none;}
-ul{list-style:none;position:absolute; top:20px;right:5px;}
-.logo{display:block;margin:75px auto 25px;width:270px;height:129px;}
-#submit{width:100px;height:36px;background:#3385ff; border:1px solid #06F;color:#fff;font-size:15px;}
-#search{width:526px;height:36px;}
-.tubiao{width:630px;margin:0 auto;}
-.qrcode_text{height:46px;line-height:23px;font-size:12px;margin: 8px 0 0 10px;}
-.qrcode_img{float:left;}
-.qrcode{float:left;width:130px;height:65px;}
-.qrcode1{margin:0 20px;}
-span{color:#666;font:12px arial}
-span1{color:#666;}
-.text1{color:#272727;font:12px arial}
-.text2{color:#666;font:12px arial}
-.banquan{float:left;width:340px;padding:5px 0px; line-height:28px;}
-ul li ul li{float:none;}
+#nav a
+{	
+	margin-right: 20px;
+	list-style: none;
+	text-align: center;
+	display: inline-block;
+	font-size: 13px;
+	float: right;
+}
 
+.normal
+{
+	font-weight: 700;
+	line-height: 24px;
+	color: #333;
+	text-decoration: underline;
+}
 
-</style> 
+.set
+{
+	line-height: 24px;
+	color: #333;
+}
+
+.more{
+	width: 66px;
+	height:30px;
+	line-height:30px;
+	background:#3385ff;
+	color:#fff;
+	text-decoration: none;
+}
+
+.cantanter
+{
+	width: 100%
+	margin:0 auto;
+	text-align: center;
+	position: absolute;
+}
+
+.logo img
+{
+	width: 270px;
+	height:129px;
+	display: block;
+	margin:0 auto;
+}
+.search{width:700px;margin:0 auto;}
+
+#text{width:523px;height:34px;}
+
+#submit{width:100px;height:34px;background:#3385ff; border:1px solid #06F;color:#fff;font-size:15px;margin-left:-8px}
+
+.phone{width: 100%;text-align: center;}
+.phone img
+{
+	width: 60px;
+	height: 60px;
+	display:block;
+	margin: 0 auto;
+	margin-top: 200px
+}
+
+.phone-text
+{
+	color: #666;
+	font-weight: 700;
+	line-height: 23px;
+	margin-top: 10px;
+}
+
+.foot
+{
+	width: 100%;
+	text-align: center;
+	display: inline;
+	margin: 0 auto;
+}
+
+.foot p a
+{
+	margin-left: 2px;
+	line-height: 22px;
+	text-align: center;
+	display: inline;
+	font-size: 13px;
+	color: #999;
+	text-align: left;
+}
+
+span
+{
+	font-size: 13px;
+	color: #999;
+	margin-left: -15px;
+	margin-right: -10px;
+}
+</style>
 </head>
-
 <body>
-<div class="wrap">
-   <div class="header">
-     <ul>
-         <li><a href="#" class="font3">更多产品</a></li>
-         <li><a href="#" class="font2">设置</a>
-<!--           <ul>
-                <li><a href="#">搜索设置</a></li>
-                <li><a href="#">高级搜索</a></li>
-                <li><a href="#">关闭预测</a></li>
-                <li><a href="#">搜索历史</a></li>
-            </ul>-->
-         </li>
-         <li><a href="#" class="font2">登录</a></li>
-         <li><a href="#" class="font1">贴吧</a></li>
-         <li><a href="#" class="font1">视频</a></li>
-         <li><a href="#" class="font1">地图</a></li>
-         <li><a href="#" class="font1">hao123</a></li>
-         <li><a href="#" class="font1">新闻</a></li>
-         <li><a href="#" class="font1">糯米</a></li>
-      </ul>
-   
-   </div>
-   <div class="mainbody">
-        <img class="logo" src="https://www.baidu.com/img/bd_logo1.png">
-        <div class="tubiao">
-        <input type="search" name="search" id="search" /><input type="submit" name="submit" id="submit"value="百度一下" /></div>
-   </div>
-   <div class="footer">
-           <div class="qrcode">
-              <div class="qrcode_img"> 
-               <img src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_efde696.png" width="60" height="60" />
-              </div>
-              <div class="qrcode_text">
-                 <p><strong>手机百度</strong></p>
-              </div>
-           </div>
-         <div class="banquan">
-            <p><a href="#" class="text1">把百度设为主页</a>&nbsp;&nbsp;&nbsp;<a href="#" class="text1">关于百度</a>&nbsp;&nbsp;&nbsp;<a href="#" class="text1">About Baidu</a>
-            </p>
-            <p><span>©2016 Baidu <a href="#" class="text2">使用百度前必读</a> <a href="#" class="text2">意见反馈</a> 京ICP证030173号</span>
-            </p>
-         </div>
-        
-
-  </div>
-</div>
-
+	<div class="wrap">
+		<div class="header">
+			<div id="nav">
+				<a href="#" class="more">更多产品</a>
+				<a href="#" class="set">设置</a>
+				<a href="#" class="set">登录</a>
+				<a href="#" class="normal">贴吧</a>
+				<a href="#" class="normal">视频</a>
+				<a href="#" class="normal">地图</a>
+				<a href="#" class="normal">hao123</a>
+				<a href="#" class="normal">新闻</a>
+				<a href="#" class="normal">糯米</a>	
+			</div>
+		</div>
+		<div class="contanter">
+			<div class="form">
+				<div class="logo">
+					<img src="https://www.baidu.com/img/bd_logo1.png" alt="百度Logo">
+				</div>
+				<div class="search">
+					<input type="search" id="text">
+					<input type="submit" value="百度一下" id="submit">
+				</div>
+			</div>
+		</div>
+		<div class="phone">
+				<div class="phone-img">
+					<img src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_efde696.png" alt="二维码">
+				</div>
+				<div class="phone-text">
+						<b>手机百度</b>
+				</div>
+		</div>
+		<div class="foot">
+			<p class="ftcon-text">
+				<a href="#">把百度设为首页</a>
+				<a href="#">关于百度</a>
+				<a href="#">About  Baidu</a>
+				<a href="#">百度推广</a>
+			</p>
+			<p>
+				<span>©2016&nbsp;Baidu&nbsp;</span>
+				<a href="#">使用百度前必读</a>
+				<a href="#">意见反馈</a>
+				<span>&nbsp;京ICP证030173号&nbsp;</span>
+				<i class="icp-logo"></i>
+				<a href="#">京公网安备11000002000001号</a>
+				<i class="jgwab-logo"></i>
+			</p>
+		</div>
+	</div>
 </body>
 </html>
