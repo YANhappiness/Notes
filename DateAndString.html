@@ -1,0 +1,72 @@
+<!DOCTYPE  HTML>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>日期对象</title>
+
+<script type="text/javascript">
+
+  //通过javascript的日期对象来得到当前的日期，并输出。
+  var oTime=new Date();//实例化日期对象；
+  var date=""//日期
+  date+=oTime.getFullYear()+'年';
+  date+=oTime.getMonth()+1+'月';
+  date+=oTime.getDate()+'日';
+  var day=oTime.getDay();//星期
+  var week='';
+  switch(day){
+  	case 0:
+  	week='星期日';
+  	break;
+  	case 1:
+  	week='星期一';
+  	break;
+  	case 2:
+  	week='星期二';
+  	break;
+  	case 3:
+  	week='星期三';
+  	case 4:
+  	week='星期四';
+  	case 5:
+  	week='星期五';
+  	case 6:
+  	week='&nbsp星期六';
+  }
+  date+=week;
+  document.write(date);
+  
+
+  //成绩是一长窜的字符串不好处理，找规律后分割放到数组里更好操作哦
+  var scoreStr = "小明:87;小花:81;小红:97;小天:76;小张:74;小小:94;小西:90;小伍:76;小迪:64;小曼:76";
+ 	var arr=scoreStr.split(';');//按;将数组分割
+ 	console.log(arr);
+ 	var sum=0;
+ 	var average=0;
+ 	for(var i=0;i<arr.length;i++){
+ 		var index=arr[i].indexOf(':')//根据：决定分组开始的位置
+ 		sum+=parseInt(arr[i].substr(index+1,2));//求所有成绩的和;
+ 		average=Math.floor(sum/arr.length);//求和的平均值;
+ 	}
+ 	document.write('--班级总分为'+average);
+
+  //从数组中将成绩撮出来，然后求和取整，并输出。
+  
+  /*
+  *1,将日期实例化；var date=new Date();
+  *2，date.getDay()返回0~6，需要switch判断;
+  *
+  *3，字符串数组求平均值：先将数据按;分割split(';')
+  *4,确定选取每段分割数据的位置 var index=arr[i].indexOf(':');
+  *5，最后根据位置分割数据 arr[i].substr(index+1,2)
+  *6，强制转换求和：sum+=parseInt(sum);
+  *7，求平均值向下取值 AVG=Math.floor(sum/arr.length)
+  **/
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
