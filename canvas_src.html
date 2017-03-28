@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas绘画太极图</title>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="800"></canvas>
+
+<!--结合js使用
+	使用方法：
+	1.得到画布对象
+	2.以2d方式绘制 -->
+	<script type="text/javascript">
+		//绘制圆形
+		// arc(x, y, radius, startAngle, endAngle, anticlockwise)
+		//x坐标,y坐标,半径,起始位置,结束位置,方向,(顺时针false，逆时针true)
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d"); 
+		//外轮廓   左半圆白
+		context.beginPath();
+		context.arc(400, 400, 300, Math.PI*0.5, Math.PI*1.5);
+		context.fillStyle = "#FFF";
+		context.fill();
+		//外轮廓   左半圆黑
+		context.beginPath();
+		context.arc(400, 400, 300, Math.PI*1.5, Math.PI*0.5);
+		context.fillStyle = "#000";
+		context.fill();		
+
+		//上半圆   黑
+		context.beginPath();
+		context.arc(400, 250, 150, Math.PI*0.5, Math.PI*1.5);
+		context.fillStyle = "#000";
+		context.fill();	
+
+		//下半圆   白
+		context.beginPath();
+		context.arc(400, 550, 150, Math.PI*1.5, Math.PI*0.5);
+		context.fillStyle = "#FFF";
+		context.fill();	
+
+		//上实心圆   白 
+		context.beginPath();
+		context.arc(400, 250, 50, 0, Math.PI*2);
+		context.fillStyle = "#FFF";
+		context.fill();	
+
+		//下实心圆   黑
+		context.beginPath();
+		context.arc(400, 550, 50, 0, Math.PI*2);
+		context.fillStyle = "#000";	//填充样式
+		context.fill();				//绘制填充
+
+		//优化 整体边框 黑
+		context.beginPath();
+		context.arc(400, 400, 300, 0, Math.PI*2);
+		context.strokeStyle="#000";	//边框样式
+		context.lineWidth = 2;  //设置线条粗细为2px
+		context.stroke();		//边框绘制
+
+	</script>
+</body>
+</html>
