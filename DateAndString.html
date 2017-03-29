@@ -2,65 +2,65 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>日期对象</title>
+<title>脠脮脝脷露脭脧贸</title>
 
 <script type="text/javascript">
 
-  //通过javascript的日期对象来得到当前的日期，并输出。
-  var oTime=new Date();//实例化日期对象；
-  var date=""//日期
-  date+=oTime.getFullYear()+'年';
-  date+=oTime.getMonth()+1+'月';
-  date+=oTime.getDate()+'日';
-  var day=oTime.getDay();//星期
+  //脥篓鹿媒javascript碌脛脠脮脝脷露脭脧贸脌麓碌脙碌陆碌卤脟掳碌脛脠脮脝脷拢卢虏垄脢盲鲁枚隆拢
+  var oTime=new Date();//脢碌脌媒禄炉脠脮脝脷露脭脧贸拢禄
+  var date=""//脠脮脝脷
+  date+=oTime.getFullYear()+'脛锚';
+  date+=oTime.getMonth()+1+'脭脗';
+  date+=oTime.getDate()+'脠脮';
+  var day=oTime.getDay();//脨脟脝脷
   var week='';
   switch(day){
   	case 0:
-  	week='星期日';
+  	week='脨脟脝脷脠脮';
   	break;
   	case 1:
-  	week='星期一';
+  	week='脨脟脝脷脪禄';
   	break;
   	case 2:
-  	week='星期二';
+  	week='脨脟脝脷露镁';
   	break;
   	case 3:
-  	week='星期三';
+  	week='脨脟脝脷脠媒';
   	case 4:
-  	week='星期四';
+  	week='脨脟脝脷脣脛';
   	case 5:
-  	week='星期五';
+  	week='脨脟脝脷脦氓';
   	case 6:
-  	week='&nbsp星期六';
+  	week='&nbsp脨脟脝脷脕霉';
   }
   date+=week;
   document.write(date);
   
 
-  //成绩是一长窜的字符串不好处理，找规律后分割放到数组里更好操作哦
-  var scoreStr = "小明:87;小花:81;小红:97;小天:76;小张:74;小小:94;小西:90;小伍:76;小迪:64;小曼:76";
- 	var arr=scoreStr.split(';');//按;将数组分割
+  //鲁脡录篓脢脟脪禄鲁陇麓脺碌脛脳脰路没麓庐虏禄潞脙麓娄脌铆拢卢脮脪鹿忙脗脡潞贸路脰赂卯路脜碌陆脢媒脳茅脌茂赂眉潞脙虏脵脳梅脜露
+  var scoreStr = "脨隆脙梅:87;脨隆禄篓:81;脨隆潞矛:97;脨隆脤矛:76;脨隆脮脜:74;脨隆脨隆:94;脨隆脦梅:90;脨隆脦茅:76;脨隆碌脧:64;脨隆脗眉:76";
+ 	var arr=scoreStr.split(';');//掳麓;陆芦脢媒脳茅路脰赂卯
  	console.log(arr);
  	var sum=0;
  	var average=0;
  	for(var i=0;i<arr.length;i++){
- 		var index=arr[i].indexOf(':')//根据：决定分组开始的位置
- 		sum+=parseInt(arr[i].substr(index+1,2));//求所有成绩的和;
- 		average=Math.floor(sum/arr.length);//求和的平均值;
+ 		var index=arr[i].indexOf(':')//赂霉戮脻拢潞戮枚露篓路脰脳茅驴陋脢录碌脛脦禄脰脙
+ 		sum+=parseInt(arr[i].substr(index+1,2));//脟贸脣霉脫脨鲁脡录篓碌脛潞脥;
+ 		average=Math.floor(sum/arr.length);//脟贸潞脥碌脛脝陆戮霉脰碌;
  	}
- 	document.write('--班级总分为'+average);
+ 	document.write('--掳脿录露脳脺路脰脦陋'+average);
 
-  //从数组中将成绩撮出来，然后求和取整，并输出。
+  //麓脫脢媒脳茅脰脨陆芦鲁脡录篓麓茅鲁枚脌麓拢卢脠禄潞贸脟贸潞脥脠隆脮没拢卢虏垄脢盲鲁枚隆拢
   
   /*
-  *1,将日期实例化；var date=new Date();
-  *2，date.getDay()返回0~6，需要switch判断;
+  *1,陆芦脠脮脝脷脢碌脌媒禄炉拢禄var date=new Date();
+  *2拢卢date.getDay()路碌禄脴0~6拢卢脨猫脪陋switch脜脨露脧;
   *
-  *3，字符串数组求平均值：先将数据按;分割split(';')
-  *4,确定选取每段分割数据的位置 var index=arr[i].indexOf(':');
-  *5，最后根据位置分割数据 arr[i].substr(index+1,2)
-  *6，强制转换求和：sum+=parseInt(sum);
-  *7，求平均值向下取值 AVG=Math.floor(sum/arr.length)
+  *3拢卢脳脰路没麓庐脢媒脳茅脟贸脝陆戮霉脰碌拢潞脧脠陆芦脢媒戮脻掳麓;路脰赂卯split(';')
+  *4,脠路露篓脩隆脠隆脙驴露脦路脰赂卯脢媒戮脻碌脛脦禄脰脙 var index=arr[i].indexOf(':');
+  *5拢卢脳卯潞贸赂霉戮脻脦禄脰脙路脰赂卯脢媒戮脻 arr[i].substr(index+1,2)
+  *6拢卢脟驴脰脝脳陋禄禄脟贸潞脥拢潞sum+=parseInt(sum);
+  *7拢卢脟贸脝陆戮霉脰碌脧貌脧脗脠隆脰碌 AVG=Math.floor(sum/arr.length)
   **/
 
 
