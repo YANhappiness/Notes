@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        	#canvas{
+        		border: 1px solid;
+        		font-size: 30px;
+        		/* line-height: 30px;
+        		text-align: center; */
+        	}
+        	.code *{
+        		float: left;
+        		height: 30px;
+        		line-height: 30px;
+        		margin: 1px;
+        	}
+        	input{
+        		height: 30px;
+        	}
+        	#check_div{
+        		width: 200px;
+        		height: 30px;
+        		font-size: 30px;
+        	}
+        </style>
+    </head>
+    <body onload="add_st()">
+    	<div class="code">
+    		<span>验证码：</span>
+    		<input type="text" id="code_input" onchange="check_code()">&nbsp;&nbsp; <canvas id="canvas" width="100" height="30px"></canvas><a href="javascript:add_st()">看不清，换一张</a>
+    	</div>
+    	<div id="check_div"></div>
+    </body>
+    <script type="text/javascript">
+    	var arr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','j','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',0,1,2,3,4,5,6,7,8,9];
+    	var str = [];
+    	var canvas = document.getElementById("canvas");
+    	var context = canvas.getContext("2d");
+
+    	//随机5个选验证码字符的方法
+    	function choice(){
+    		for(var i = 0;i < 5; i++){
+    		// var ran = Math.floor(Math.random()*arr.length);
+    			str[i] = arr[Math.floor(Math.random()*arr.length)];
+    		console.log("str["+i+"]="+str[i]);
+    		}
+    	}
+
+    	//随机选线 3条线段
+    	function add_line(){
+    		var start_x = new Array();
+    		var start_y = new Array();
+    		var end_x = new Array();
+    		var end_y = new Array();
+    		var a = 0;
+    		for(var i = 0; i < 3; i++){
+    			start_x[i] = Math.floor(Math.random()*canvas.width);
+    			end_x[i] = Math.floor(Math.random()*canvas.width);
+    			start_y[i] = Math.floor(Math.random()*canvas.height);
+    			end_y[i] = Math.floor(Math.random()*canvas.height);
+    			console.log("start_x[i]="+start_x[i]+" start_y=[i]"+start_y[i]+" end_x=[i]"+end_x[i]+" end_y=[i]"+end_y[i]);
+    			context.beginPath();
+    			
+    			context.moveTo(start_x[i], start_y[i]);
+    			context.lineTo(end_x[i], end_y[i]);
+    			context.stroke();
+    			context.closePath();
+    		}
+    	}
+    	//插入验证码字符
+    	function add_st(){
+    		context.clearRect(0, 0, canvas.width, canvas.height);
+    		add_line();
+    		choice();
+    		for(var i = 0; i < 5; i++){
+    			context.beginPath();
+    			context.font = "15px '微软雅黑'";
+    			context.strokeText(str[i], (20*i+Math.floor(Math.random()*10)), 20);
+    			context.closePath();
+    		}
+    	}
+    	
+    	//验证验证码
+    	 function check_code(){
+                var code_input = document.getElementById("code_input").value;
+                console.log("code_input="+code_input);
+            	var code = "";
+            	for(var i = 0; i < str.length;i++){
+            		code += str[i];
+            	}
+            	console.log("code.toLowerCase()="+code.toLowerCase());
+                if(code_input.toLowerCase().length<=0){
+                    document.getElementById("check_div").innerText = "请输入验证码！";
+                }else{ 
+                    if(code_input.toLowerCase() == code.toLowerCase()){                    
+                    	document.getElementById("check_div").innerText = "验证码正确！";
+                    }else{
+                    	document.getElementById("check_div").innerText = "验证码有误！";
+                        document.getElementById("code_input").value = "";
+                        //让文本框获得焦点
+                        document.getElementById("code_input").focus();
+                        //刷新验证码
+                        add_st();
+                    }
+                }
+            }
+    </script>
+</html>
