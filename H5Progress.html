@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态加载的进度条</title>
+</head>
+<body>
+	<progress value="0" max="100" id="progress"></progress><span id="text">12</span>%
+	<hr>
+
+	<meter min="0" max="100" low=15 value=10 height=90 optimum=95></meter>
+	<meter min="0" max="100" low=15 value=50 height=90 ></meter>
+	<meter min="0" max="100" low=15 value=95 height=90 optimum=20></meter>
+
+	<script type="text/javascript">
+	var num = 0;
+	var timer =null;
+	function pro(){
+		if (num >= 100) {
+			clearInterval(timer);
+			alert("加载完成！")
+		}else{
+			num ++;
+			document.getElementById("progress").value = num;
+			//将数值返回页面
+			document.getElementById("text").innerText = num;
+		}
+
+		}
+		timer = setInterval(pro, 100);
+
+
+
+	</script>
+</body>
+</html>
