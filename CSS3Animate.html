@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+<style type="text/css">
+	div{width: 100px;height: 100px;}
+	div.div1{background: red;animation:animation1 10s;}
+	@keyframes animation1{
+		from{background: red;}
+		to{background: yellow;}
+	}
+
+	div.div2{background: red;animation:animation2 5s;}
+	@keyframes animation2{
+		0%{background: red;}
+		25%{background: yellow;}
+		50%{background: blue;}
+		75%{background: #ccc;}
+		100%{background: grey;}
+	}
+
+	div.div3{background: red;position:relative;animation:animation3 10s linear 2s infinite alternate;}
+	@keyframes animation3{
+		0%{background: red; left: 0;top:0;}
+		25%{background: yellow; left: 400px;top:0;}
+		50%{background: blue; left: 400px;top:400px}
+		75%{background: #ccc;left:0;top:400px;}
+		100%{background: grey;left: 0;top:0;}
+	}
+
+
+</style>
+</head>
+<body>
+	<div class="div1"></div>
+	<br>
+	<br>
+	<div class="div2"></div>
+	<br>
+	<br>
+	<div class="div3"></div>
+	<br>
+	<br>
+</body>
+</html>
