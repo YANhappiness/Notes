@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>改变全选状态的三种方法</title>
+</head>
+<body>
+	<p>今天吃什么?<input type="checkbox" id="attr_name">全选/反选</p>
+		<input type="checkbox" name="food" >藤椒鸡
+		<input type="checkbox" name="food" >水煮鱼
+		<input type="checkbox" name="food" >溜肥肠
+		<input type="checkbox" name="food" >地锅鸡
+		<input type="checkbox" name="food" >红烧肉 <br/>
+		<input type="button"value="全选" id="checkAll">
+		<input type="button"value="反选" id="clearCheck"><br/>
+		请输入你的选择（1-5）：<br/><input type="text" id="num" name="number"><br/>
+		<input type="button" id="btn" value="确定">
+
+
+<script type="text/javascript">
+	// 第一种方式：通过name改变checkbox选择状态    思路：将选框与被选框的状态一致
+	var attr_name = document.getElementById("attr_name");
+	attr_name.onclick=function(){
+		//获取选框状态
+		var pre_states = attr_name.checked;
+		console.log(pre_states);   /*true or false*/
+		
+		//通过ByName获取被选框
+		var aFood = document.getElementsByName("food");
+		for (var i = 0; i < aFood.length; i++) {
+			// 将选框状态赋予被选框
+			aFood[i].checked=pre_states;
+		}
+	}
+
+	//第二种方式:通过TagName改变checkbox选择状态
+	
+	//全选按钮
+	var checkAll = document.getElementById("checkAll");
+	checkAll.onclick=function(){
+		// alert(checkAll);
+		var aInput = document.getElementsByTagName("input");
+		for (var i = 0; i < aInput.length; i++) {
+			aInput[i].checked=true;
+		}
+	}
+
+	//反选按钮
+	var clearCheck = document.getElementById("clearCheck");
+	clearCheck.onclick=function(){
+		// alert(checkAll);
+		var aInput = document.getElementsByTagName("input");
+		for (var i = 0; i < aInput.length; i++) {
+			aInput[i].checked=false;
+		}
+	}
+
+	//第三种方式：通过输入数字改变checkbox选择状态
+	var aFood = document.getElementsByName("food");
+	var btn = document.getElementById("btn");
+	//var num = document.getElementById("num").value;  //获取不到num的值？？？点击事件后值改变--》获取的值是初始值
+	btn.onclick=function(){
+		var num = document.getElementById("num").value;
+		alert(num);
+		debugger;
+		if (parseInt(num)>6 || parseInt(num)<0) {
+			alert("请输入1-6之间的数字");
+		}else{
+			aFood[parseInt(num)-1].checked=true;
+		}
+	}	
+</script>
+</body>
+</html>
