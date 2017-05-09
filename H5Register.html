@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户注册页面</title>
+
+	<style type="text/css">
+		*{margin: 0;padding: 0; font-size: 20px;}
+		.formlist{margin: 20px;width: 1000px;}
+		.formlist label{width: 100px;text-align: right;display: inline-block;}
+		input[type='submit']{width:60px;margin-left: 130px;}
+	</style>
+</head>
+<body>
+	<form action="" class="formbox">
+		<div class="formlist">
+			<label for="">用户名:</label>
+			<input type="text"  placeholder="请输入用户名" required pattern="[a-zA-Z0-9]{6,12}" autofocus>
+		</div>
+		<div class="formlist">
+			<label for="">密码:</label>
+			<input type="password" pattern="[a-zA-Z]{6,8}" placeholder="" required id="psd1">
+		</div>
+		<div class="formlist">
+			<label for="">确认密码: </label>
+			<input type="password" required id="psd2"><span style="display:none" id="text">两次输入密码不一致</span>
+		</div>
+		<div class="formlist">
+			<label for="">年龄: </label>
+			<input type="number" min="0" max="100" required>
+		</div>
+		<div class="formlist">
+			<label for="">出生日期: </label>
+			<input type="date" required>
+		</div>
+		<div class="formlist">
+			<label for="">E-mail: </label>
+			<input type="email" required>
+		</div>
+		<div class="formlist">
+			<label for="">个人主页: </label>
+			<input type="url" required>
+		</div>
+		<input type="submit">
+	</form>	
+
+
+	<script type="text/javascript">
+		var psd1 = document.getElementById("psd1");
+		var psd2 = document.getElementById("psd2");
+		var text = document.getElementById("text");
+
+		//当输入确认密码
+		psd2.onkeyup=function(){
+			var psd1 = document.getElementById("psd1").value;
+			var psd2 = document.getElementById("psd2").value;
+			if(psd1 !== psd2){
+				text.style.display="block"
+			}
+		}
+
+		//
+	</script>
+</body>
+</html>
