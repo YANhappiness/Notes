@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>range控制颜色</title>
+
+	<style type="text/css">
+		*{margin: 0;padding: 0; font-size: 20px;}
+		.box{width: 300px;height: 50px;border: 1px solid #ccc;}
+		.wrap{width: 300px;margin: 0 auto;}
+		.wrap input{margin-bottom: 20px;}
+	</style>
+</head>
+<!-- 需求：div盒子：颜色
+		可以拖动控制条，组合成盒子里面的颜色 -->
+
+<body>
+<div class="wrap">
+	<div class="box" id="box"></div>
+		<form action="" >
+			红：<input type="range" min='0' max='255' id="red"   value="0"><span id="red_val"> </span><br/>
+			绿：<input type="range" min='0' max='255' id="green" value="0"><span id="green_val"> </span><br/>
+			蓝：<input type="range" min='0' max='255' id="blue"  value="0"><span id="blue_val"></span><br/>
+				<input type="text" id="text2"><br>
+				<input type="button" value="获取颜色" id="btn">
+		</form>
+</div>
+</body>
+	<script type="text/javascript">
+
+	var box = document.getElementById("box");
+	var btn = document.getElementById("btn");
+
+	
+	var input = document.getElementsByTagName("input");
+	for (var i = 0; i < input.length; i++) {
+		input[i].onchange=function(){
+			var red = document.getElementById("red").value;
+	 		var green = document.getElementById("green").value;
+	 		var blue = document.getElementById("blue").value;
+	 		//改变颜色框颜色
+	 		box.style.background="rgb("+red+","+green+","+blue+")";
+	 		// 将颜色返回页面
+	 		document.getElementById("red_val").innerHTML=red;
+	 		document.getElementById("green_val").innerHTML=green;
+	 		document.getElementById("blue_val").innerHTML=blue;
+	 		//将颜色转换为16进制输出
+	 		var new_red = parseInt(red, 10);
+	 		var new_green = parseInt(green, 10);
+	 		var new_blue = parseInt(blue, 10);
+
+	 		document.getElementById("text2").value="#"+parseInt(new_red,16)+parseInt(new_green,16)+parseInt(new_blue,16);
+	 		
+		}
+	};
+	
+
+
+	</script>
+
+</html>
