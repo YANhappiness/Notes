@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符数量验证</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		textarea{
+			width: 600px;
+			height: 400px;
+			font-size: 30px;
+			margin:0 auto;
+		}
+		.wrap{
+			width: 600px;
+			height: 500px;
+			font-size: 30px;
+			margin:20px auto;
+		}
+		p{text-align: right;}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<textarea name=""  cols="30" rows="10" id="content"></textarea>
+		<p><span id="hint">0</span>/140</p>
+	</div>
+
+<script type="text/javascript">
+window.onload=function(){
+	//思路：剩余的字符数 = 140 - 已经输入的字符数
+	// var Event =(oninput || onpropertychange)?oninput:onpropertychange;
+
+	// 获取文本输入值
+	var text = document.getElementById("content");
+	text.oninput = text.onpropertychange =function(){	
+		//获取提示字符
+		var hint = document.getElementById("hint");
+		//先截取字符
+		text.value = text.value.substr(0,140);
+		//后对字符长度进行计算
+		var len = 140 - text.value.length;
+		hint.innerHTML=len;
+		// 判断超出情况
+		if (len<=0) {
+			// hint.style.color="red";
+			len = 0;
+		}
+	}
+}
+	
+
+</script>
+</body>
+</html>
