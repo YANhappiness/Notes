@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>为表格添加或删除行</title>
+
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+
+</head>
+<body>
+	<div class="wrap">
+		<h3>意见箱</h3>
+		<div class="content">
+			<p><font>意见1:</font><input type="text"></p>
+			<p><font>意见2:</font><input type="text"></p>
+		</div>
+		<input type="button" value="删除" name="del">
+		<input type="button" value="添加" name="add"> 
+	</div>
+
+
+	<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		 //alert($('.content p').length);
+
+		//删除事件
+		$("input[name='del']").click(function(event) {
+			/* Act on the event */
+			$('.wrap p:last').remove();
+			
+		});		/*del   end*/
+
+		//添加事件
+		$("input[name='add']").click(function(event) {
+			//判断如果删除了所有的p如何添加内容
+			if ($('.content p').length == 0) {
+				$('.content').html('<p><font>意见1:</font><input type="text"></p>')
+			}else if($('.content p').length < 6){
+				var $length = $('.content p').length+1;
+				$('.content p:last').append('<p><font>意见'+$length+':</font><input type="text"></p>')
+			}else{
+				alert("意见箱已满，不可插入！")
+			}
+		})		/*add  end*/
+	});
+	</script>
+</body>
+</html>
