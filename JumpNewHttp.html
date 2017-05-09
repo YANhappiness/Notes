@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5秒钟之后跳转</title>
+<style type="text/css">
+	body{font-size: 30px; width: 200px;height:100px;margin:100px auto;}
+</style>
+</head>
+<body>
+	<span id="num">5</span>秒后跳转
+
+
+
+
+<script type="text/javascript">
+	var i = 5
+	var timer = setInterval(function(){
+		debugger;
+		var num = document.getElementById("num");
+		console.log(num+'       1111')
+		if(parseInt(num.innerText) <=1){
+			window.location.href="www.baidu.com";
+		}else{
+			num.innerText = --i;
+			console.log(num+'       2222')
+		}
+	},1000)
+
+
+	// var timer = setInterval(function(){
+	// 	debugger;
+	// 	var num = document.getElementById("num");
+	// 	console.log(num+'       1111')
+	// 	if(parseInt(num.innerText) <=1){
+	// 		window.location.href="www.baidu.com";
+	// 	}else{
+	// 		num.innerText = parseInt(num.innerText)-1;
+	// 		console.log(num+'       2222')
+	// 	}
+	// },1000)
+</script>
+</body>
+</html>
