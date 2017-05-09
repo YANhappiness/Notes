@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>循环移动</title>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+	<style type="text/css">
+		.div1{width: 100px;height: 100px;background: red;}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+
+<script type="text/javascript">
+window.onload=function(){
+	run();
+	function run(){
+		
+		$('.div1').animate({
+			'margin-left':'600px',
+		},1000, function() {
+			$(this).animate({
+				'margin-top':'600px'
+			},1000, function() {
+				$(this).animate({
+					'margin-left':'0',
+					'margin-top':'600px'},
+					1000, function() {
+						$(this).animate({
+							'margin-left': '0',
+							'margin-top': '0'},
+							1000, function() {
+					});
+				});
+			});
+		});
+		// alert("message")
+		setTimeout(run,4000);
+	}
+}
+
+	
+</script>
+</body>
+</html>

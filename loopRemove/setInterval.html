@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>移动的动画效果</title>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+	<style type="text/css">
+		.div1{width: 100px;height: 100px;background: red;}
+		.div2{width: 100px;height: 100px;background: yellow;top: 200px;}
+		.div3{width: 100px;height: 100px;background: #28F93D;top: 400px;}
+		div{position: absolute;}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+	<div class="div2"></div>
+	<div class="div3"></div>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+
+// 样式一
+$('.div1').click(function(event) {
+		$(this).animate({
+			'margin-left':'600px',
+		},2000, function() {
+			$(this).animate({
+				'margin-top':'600px'
+			},2000, function() {
+				$(this).animate({
+					'margin-left':'0',
+					'margin-top':'600px'},
+					2000, function() {
+						$(this).animate({
+							'margin-left': '0',
+							'margin-top': '0'},
+							2000, function() {
+					});
+				});
+			});
+		});
+
+	});
+		
+
+	
+		
+	//样式二
+$('.div2').click(function(event) {
+		$(this).animate({
+			'margin-left':'600px',
+		},1000, function() {
+			$(this).animate({
+				'margin-top':'600px'
+			},1000, function() {
+				$(this).animate({
+					'margin-left':'0',
+					'margin-top':'600px'},
+					1000, function() {
+						$(this).animate({
+							'margin-left': '0',
+							'margin-top': '0'},
+							1000, function() {
+					});
+				});
+			});
+		});
+
+	});
+		
+		
+
+
+	// 样式三
+	$('.div3').click(function(event) {
+		$(this).animate({
+			'margin-left':'400px',
+		},1000, function() {
+			$(this).animate({
+				'margin-top':'400px'
+			},1000, function() {
+				$(this).animate({
+					'margin-left':'0',
+					'margin-top':'400px'},
+					1000, function() {
+						$(this).animate({
+							'margin-left': '0',
+							'margin-top': '0'},
+							1000, function() {
+					});
+				});
+			});
+		});
+
+	});
+		
+	});
+	</script>
+</body>
+</html>
