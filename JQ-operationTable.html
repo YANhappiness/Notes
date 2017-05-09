@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>案例-列表数据操作</title>
+	<script type="text/javascript" src="../../../工具/jquery/jquery-1.9.1.min.js"></script>
+	<style type="text/css">
+		*{margin: 0;padding: 0;text-decoration: none;/* color:#000; */font-size: 30px;}
+		.wrap table{border: 1px solid #ccc;margin: 20px auto; line-height: 30px;}
+		.wrap table td{border:1px solid #ccc;text-align: center;width: 200px;height: 100px;}
+		.wrap input{border:none;width: 200px;height: 100px; text-align: center;overflow: hidden;}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<table cellspacing='0';cellpadding='0';>
+			<tr>
+				<td>编号</td>
+				<td>标题</td>
+				<td>数目</td>
+				<td>操作</td>
+			</tr>
+			<tr>
+				<td>100</td>
+				<td><label for="">最新</label><input type="text"></td>
+				<td>12</td>
+				<td><a href="#" class="edit">编辑 &nbsp;</a><a href="#" class="del">删除</a></td>
+			</tr>
+			<tr>
+				<td>101</td>
+				<td><label for="">期刊</label><input type="text"></td>
+				<td>23</td>
+				<td>
+					<a href="#" class="edit">编辑 &nbsp;</a><a href="#" class="del">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>103</td>
+				<td><label for="">音像</label><input type="text"></td>
+				<td>26</td>
+				<td><a href="#" class="edit">编辑 &nbsp;</a><a href="#" class="del">删除</a></td>
+			</tr>
+			<tr>
+				<td>104</td>
+				<td><label for="">杂志</label><input type="text"></td>
+				<td>45</td>
+				<td><a href="#" class="edit">编辑 &nbsp;</a><a href="#" class="del">删除</a></td>
+			</tr>
+		</table>
+	</div>
+
+
+	<script type="text/javascript">
+	jQuery(document).ready(function($) {
+        $('.wrap input').hide();
+
+        //点击编辑按钮，显示对应的文本框
+        $('.wrap .edit').click(function(){
+        	//alert("message")
+        	//让label隐藏  input显示
+        	$('.wrap label').show();
+        	$('.wrap input').hide();
+        	$(this).parent().siblings('td').children('label').hide();
+        	
+        	$(this).parent().siblings('td').children('input').show();
+			var $message = $(this).parent().siblings('td').children('label').text();
+			$(this).parent().siblings('td').children('input').val($message)
+        })
+
+        //修改完成后 隐藏input ，显示label：内容是修改后的内容
+        $('.wrap input').blur(function(event) {
+        	//alert($(this).val());
+        	$(this).prev().text($(this).val());
+        	$(this).hide().prev().show();
+        });
+
+        //当点击删除时，删除当前行  //询问是否要删除
+        $('.wrap .del').click(function(){
+        	if (confirm("真的要删除吗")) {
+        		//$(this).parent().parent().remove('');
+        		if($(".wrap table tr").length > 2){
+        			$(this).parents('tr').remove();
+        		}
+        	}
+
+
+
+        		//删除全部
+         //    if($('.wrap tr').length == 1){
+         //    	$('html').remove();
+        	// }
+
+        })
+        
+	});
+
+
+	</script>
+</body>
+</html>
