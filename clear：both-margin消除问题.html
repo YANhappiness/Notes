@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clear:both所产生的margin消除问题</title>
+<style type="text/css">
+	.d1,.d2{width: 100px;height: 100px;background: #FE0404;}
+
+	/*.wrap{overflow: hidden; }*/   /*方法二*/
+	
+	.clearfix:before{content: "";display: table;clear: both;}   /*方法三*/
+	
+	.clearfix{*zoom:1;}
+	.d1{float: left;}
+	.d2{margin-top: 40px;/*clear: both;*//*float: left;*/}  /*方法一*/
+</style>
+</head>
+<body>
+	<div class="d1"></div>
+	<div class="clearfix">
+		<div class="d2"></div>
+	</div>
+</body>
+</html>
