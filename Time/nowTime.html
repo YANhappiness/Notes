@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态显示时间</title>
+<style type="text/css">
+	*{margin: 0;padding: 0;}
+	div{width: 1000px;height: 40px;font-size: 40px;margin: 100px auto;
+		font-weight: bold;text-align: center;}
+</style>
+</head>
+<body>
+	<div id="timer">123</div>
+
+<script type="text/javascript">
+	//2017年3月21日 15:10:10 星期一
+	getTime();
+	setInterval(getTime, 1000)
+
+	// 将时分秒变成两位数 double
+	function getdouble(n){
+		if(n<10){
+			return '0'+n;
+		}else{
+		return ''+n;
+		}
+	}
+
+	//获取时间函数
+	function getTime(){
+		var time = new Date();
+		var year =time.getFullYear();
+		var month = time.getMonth()+1;
+		var day = time.getDate();
+		var hours = time.getHours();
+		var minutes = time.getMinutes();
+		var seconds = time.getSeconds();
+		var week = time.getDay();
+
+		//判断以获得正确星期
+		var week_time = "";
+		switch(week){
+			case 0: week_time = "星期日";break;
+			case 1: week_time = "星期一";break;
+			case 2: week_time = "星期二";break;
+			case 3: week_time = "星期三";break;
+			case 4: week_time = "星期四";break;
+			case 5: week_time = "星期五";break;
+			case 6: week_time = "星期六";break;
+			default:;
+		}
+
+		// 将时间拼接
+		var data = year+"年"+month+"月"+day+"日"+"&nbsp;"+getdouble(hours)+":"+getdouble(minutes)+":"+getdouble(seconds)+"&nbsp;"+week_time;
+		// 将时间赋值
+		document.getElementById("timer").innerHTML = data;
+	}
+
+</script>
+</body>
+</html>

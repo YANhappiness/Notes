@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>限时抢购</title>
+<style type="text/css">
+	h1,h2,span{color: red}
+	.wrap{width: 1000px;height: 600px;margin: 100px auto;text-align: center;font-size: 40px;}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<h1>限时抢购啦！！！</h1>
+		<p>还剩:<span id="lastTime">235天16小时XXXXX</span></p>
+		<h2>距离2017 11 11 11:11:11</h2>
+	</div>
+
+
+<script type="text/javascript">
+getTime();
+function getTime(){
+	var futureTime = new Date('2017/11/11 11:11:11');
+	var nowTime = new Date();
+
+	// 获取毫秒差
+	var passTime = futureTime.getTime() - nowTime.getTime();
+	//console.log(passTime);
+/*
+	// 初始化时间
+	var day = 0;
+	var hours = 0;
+	var minutes = 0;
+	var seconds = 0;
+	var millisecond = 0;*/
+
+	// 分别获取时分秒
+	if(passTime>0){
+		day = Math.floor(passTime/1000/60/60/24);
+		hours = Math.floor(passTime/1000/60/60%24);
+		minutes = Math.floor(passTime/1000/60%60);
+		seconds = Math.floor(passTime/1000%60);
+		millisecond = Math.floor(passTime%1000);
+	}
+
+	// var lastTime =document.getElementById("lastTime")
+	
+	var timer = getThird(day)+"天"+getDouble(hours)+"小时"+getDouble(minutes)+"分钟"+getDouble(seconds)+"秒"+getThird(millisecond)+'毫秒';
+		//console.log(getDouble(millisecond));
+	document.getElementById("lastTime").innerHTML = timer;
+
+
+}
+	// 补齐三位数
+	function getThird(num){
+		if(num<10){
+			return '00'+num;
+		}else if(num>=10&&num<100){
+			return '0'+num;
+		}else{
+			return ''+num;
+		}
+	}
+	
+	// 补齐两位数
+	function getDouble(num){
+		if(num<10){
+			return '0'+num;
+		}else{
+		return ''+num;
+		}
+	}
+
+	setInterval(getTime,0)
+
+
+
+// function getTime(){
+// 	var endTime = new Date('2017/11/11 11:11:11');
+// 	var nowTime = new Date();
+// 	var t = endTime.getTime()-nowTime.getTime();
+// 	// alert(t);
+// 	var day = 0;
+// 	var Hours = 0;
+// 	var minutes = 0;
+// 	var seconds = 0;
+
+// 	if(t>0){
+// 		day = Math.floor(t/1000/60/60/24);
+// 		Hours = Math.floor(t/1000/60/60%24);
+// 		minutes = Math.floor(t/1000/60%60);
+// 		seconds = Math.floor(t/1000%60);
+// 	}
+
+// 	// var lastTime =document.getElementById("lastTime")
+	
+// 	var timer = day+"天"+Hours+"小时"+minutes+"分钟"+seconds+"秒"
+// 	document.getElementById("lastTime").innerHTML = timer;
+// }
+
+// setInterval(getTime,0)
+</script>
+</body>
+</html>
