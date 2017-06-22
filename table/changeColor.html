@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>表格数组</title>
+<style type="text/css">
+	#table{width: 800px;height: 80px;text-align: center;font-size: 25px;}
+</style>
+
+</head>
+<body>
+	<!-- <table border="1px solid" cellpadding="0" cellspacing="0" text-align="center">
+		<thead>
+			<tr>
+				<td colspan="4">青青草原</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>年龄</th>
+			</tr>
+			<tr class="oTr">
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+			</tr>
+			<tr class="oTr">
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+			</tr>
+			<tr class="oTr">
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+			</tr>
+			<tr class="oTr">
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+			</tr>
+			<tr class="oTr">
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+				<td>测试数据</td>
+			</tr>
+		</tbody>
+	</table>
+ -->
+
+<script type="text/javascript">
+//数组--数据
+
+var arr=[
+	["101","喜羊羊","男","18"],
+	["102","美羊羊","女","17"],
+	["103","懒羊羊","男","18"],
+	["104","红太狼","女","19"],
+	["105","灰太狼","男","20"]
+];
+
+
+document.write("<table border='1px solid' cellpadding='0' cellspacing='0' text-align='center' id='table' >");
+// 头部
+document.write("<thead>");
+document.write("<tr>");
+document.write("<td colspan='4'>青青草原</td>")
+document.write("</tr>")
+document.write("</thead>")
+// 表格列表
+document.write("<tbody>");
+// 标题
+document.write("<tr>");
+document.write("<th>学号</th><th>姓名</th><th>性别</th><th>年龄</th>");
+document.write("</tr>");
+
+// 循环内容
+for(var key in arr){
+	//设置偶数行背景颜色
+ 	var bgcolor="";
+ 	if(key % 2 == 0){
+		bgcolor = "style='background-color:#F4C1C1'";
+	}
+	document.write("<tr "+bgcolor+">");
+ 	for(var i in arr[key]){
+ 		//设置性别为女的背景颜色
+ 		var color="";
+ 		if (arr[key][i]=="女") {
+ 			//alert(arr[key][i]);
+  			color="style='color:red'";
+  		}
+  		document.write("<td "+color+">"+arr[key][i]+"</td>");
+  	}
+	document.write("</tr>");
+}
+
+document.write("</tbody>");
+document.write("</table>");
+
+
+//方法二： 隔行变色   
+/*window.onload=function(){
+	var oTab=document.getElementById('table');
+    
+    for(var i=0;i<oTab.tBodies[0].rows.length;i++)
+    {
+        if (i%2==0) {
+            oTab.tBodies[0].rows[i].style.background='';
+        }
+        else
+        {
+            oTab.tBodies[0].rows[i].style.background='#ccc';
+        }
+    }
+}*/
+
+//方法三： jq方法隔行变色 
+// var $p=$('p:odd');
+//     $p.css({
+//     	"background-color": '#88F6FC',
+//     });
+</script>
+</body>
+</html>
