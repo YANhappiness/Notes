@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>1~100的和\水仙花数</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+	// 1~100的和
+	var sum=0;
+	for(var i=1;i<=100;i++){
+		sum=sum+i;
+	}
+	console.log(sum);
+
+	// 水仙花数   153
+	// 每一位上的立方和 等于该数字本身    1*1*1+5*5*5+3*3*3
+	//  
+	//  543
+	//  
+	//将个十百上的位数取出
+	for(var i=100;i<=999;i++){65
+		// 取个位
+		var g = i%10;
+		//取十数
+		var s = (parseInt(i/10))%10;
+		//取百数
+		var b = parseInt(i/100);
+
+		var sum=Math.pow(g,3)+Math.pow(s,3)+Math.pow(b,3);
+		if (sum == i ) {
+			console.log(i);
+		}
+
+	}
+
+
+</script>
+</html>

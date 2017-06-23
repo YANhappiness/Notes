@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>安全數</title>
+	<!-- 如果遇到7或者7的倍数则跳过 -->
+
+	<script type="text/javascript">			
+
+	// 倍数方法
+	// for(var num=1;num<=100;num++){
+	// 			debugger;
+	// 			var i=0;
+	// 			if (num!==i*7) {
+	// 			var i=i+1;
+	// 			document.write(num);
+	// 			}
+	// 		}
+
+	// 求余方法
+	for(var i=1;i<=100;i++){
+		if (i%7==0) {
+			document.write("pass"+"<br/>");
+		}else{
+			document.write(i+'<br/>');
+		}
+	}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
