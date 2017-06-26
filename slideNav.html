@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航列表伸缩滑动效果</title>
+<script type="text/javascript" src="./lib/jquery-1.9.1.min.js"></script>
+<style type="text/css">
+	*{margin:0;padding: 0;color: black;font-size: 16px;text-decoration: none;list-style: none;}
+	.nav-bar{width: 240px;border:1px solid #ccc;
+		margin:10px auto;  }
+	.nav-bar ul{line-height: 30px;}
+	.nav-bar h3{line-height: 38px;text-indent:20px;background:#999 url(images/+.png) no-repeat right center;}
+	.nav-bar li{background: #ccc;text-indent:40px;}
+
+	.nav-bar h3.current{
+		background:#999 url(images/-.png) no-repeat right center;
+	}
+</style>
+</head>
+<body>
+	<div class="nav-bar">
+		<h3>经济学</h3>
+		<ul>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+		</ul>
+		<h3>哲学</h3>
+		<ul>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+		</ul>
+		<h3>法学</h3>
+		<ul>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+			<li>经济学经济学</li>
+		</ul>		
+	</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		//全部隐藏只显示index[0]列表
+		$('.nav-bar ul').hide();
+		$('.nav-bar ul').eq(0).show();
+		$('.nav-bar h3').eq(0).addClass('current');
+		$('.nav-bar h3').click(function(event) {
+			/* Act on the event */
+			$(this).next('ul').slideToggle("600");
+			$(this).next('ul').siblings('ul').hide("slow");
+		
+       		if($(this).hasClass('current')){
+    			$(this).removeClass('current');
+    		}else{
+    			$(this).addClass('current');
+    		}
+    		$(this).siblings('h3').removeClass('current');
+
+        });
+});
+
+</script>
+</body>
+</html>
