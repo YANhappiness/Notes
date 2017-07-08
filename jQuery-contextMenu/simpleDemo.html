@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简单右键功能</title>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="jquery.contextMenu.min.css">
+	<link rel="stylesheet" href="font-awesome.min.css">
+
+    <style type="text/css">
+@font-face{font-family:'FontAwesome';src:url('../fonts/fontawesome-webfont.eot?v=4.7.0');src:url('../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0')
+    </style>
+</head>
+<body>
+<ul id="the-node">
+    <li><span class="context-menu-one btn btn-default">right click me</span></li>
+</ul>
+
+
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="jquery.contextMenu.min.js"></script>
+<script type="text/javascript" src="jquery.ui.position.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	// 禁用原生右键功能
+	$(document).bind("contextmenu",function(e){
+		return false;
+	})
+
+	// 自定义右键
+ 	    $('#the-node').contextMenu({
+
+            //选择器 定义哪些元素触发此菜单 
+            selector: 'li', 
+            callback: function(key, options) {
+                var m = "clicked: " + key + " on " + $(this).text();
+                window.console && console.log(m) || alert(m); 
+            },
+
+            //定义菜单  名称和图标 
+            items: {
+            	// 引用了font-awesome图标
+                "edit": {name: "编辑", icon: "fa-edit fa"}, 
+                "cut": {name: "剪切", icon: "cut",},
+                "copy": {name: "复制", icon: "copy"},
+                "paste": {name: "粘贴", icon: "paste"},
+                "delete": {name: "删除", icon: "delete"},
+                "sep1": "---------",
+                "quit": {name: "退出", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+        }
+    });
+});
+</script>
+</body>
+</html>
