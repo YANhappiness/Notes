@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css">
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .container {
+        width: 800px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    .target {
+        width: 80%;
+        height: 500px;
+        float: left;
+    }
+
+    .menu {
+        width: 20%;
+        height: 500px;
+        float: right;
+    }
+
+    .target div {
+        width: 300px;
+        height: 250px;
+        border: 1px solid #ccc;
+        box-size: border-box;
+        float: left;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+    .fa{
+    	padding-left: 270px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="target">
+            <div class="zone" id="zone_1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="zone" id="zone_2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="zone" id="zone_3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="zone" id="zone_4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="source">
+            <ul>
+                <li>
+                    <img src="icon/eleIcon_1.png" alt="电路图" draggable="true" class="icon" id="icon_1" ondragstart="drag(event)">
+                </li>
+                <li>
+                    <img src="icon/eleIcon_2.png" alt="电路图" draggable="true" class="icon" id="icon_2" ondragstart="drag(event)">
+                </li>
+                <li>
+                    <img src="icon/eleIcon_3.png" alt="电路图" draggable="true" class="icon" id="icon_3" ondragstart="drag(event)">
+                </li>
+                <li>
+                    <img src="icon/eleIcon_4.png" alt="电路图" draggable="true" class="icon" id="icon_4" ondragstart="drag(event)">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript">
+    //允许拖放
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    //拖放
+    function drag(event) {
+        event.dataTransfer.setData("tag", event.target.id);
+        console.log("被拖动元素：%s", event.target.id)
+        sourceId = event.target.id;
+    }
+
+    //放置数据
+    function drop(event) {
+        event.preventDefault();
+        // var data = event.dataTransfer.getData("tag");
+        var text = '<i class="fa fa-trash-o fa-2x" aria-hidden="true" onclick="del(this)"></i>'
+        text += '<p id='+"ele"+event.target.id+'>' + sourceId + '</p>'
+        var tagId = '#' + event.target.id
+        // $(tagId).append(text);
+
+        if (event.target.childNodes.length == 0 && event.target.tagName == "DIV") {
+            $(tagId).append(text);
+        } else {
+            alert("请先删除原图表，再添加！")
+        }
+    }
+
+    // 0.源文件图标被拖动之后图标仍存在，仅数据被拖动
+    // 1.每一个目标框内仅允许一个源文件数据，
+    // 2.目标框文件右上角有删除功能
+
+    function del(t){
+    	var state = confirm("确认删除？")
+
+    	if(state == true){
+	    	var parent = t.parentNode;
+    		parent.innerHTML = ""
+    	}
+    }
+
+    </script>
+</body>
+
+</html>
