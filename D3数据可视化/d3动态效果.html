@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>d3动态圆</title>
+</head>
+<body>
+	
+
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript">
+	var svgWidth = 600;
+	var svgHeight = 600;
+
+	var svg = d3.select("body")
+		.append("svg")
+		.style({"width":svgWidth,"height":svgHeight,"class":"svg"});
+
+	var cricle1 = svg.append("circle")
+		.attr({"class":"circle1","cx":100,"cy":100,"r":45,"fill":"green"})
+		.transition()
+		.duration(1000)
+		.attr("cx",300)
+
+	var circle2 = svg.append("circle")
+		.attr({"class":"circle2","cx":100,"cy":200,"r":45,"fill":"green"})
+		.transition()
+		.duration(1500)
+		.attr("cx",300)
+		.attr("fill","red")
+
+	var circle3 = svg.append("circle")
+		.attr({"class":"circle3","cx":100,"cy":300,"r":45,"fill":"green"})
+		.transition()
+		.duration(1000)
+		.attr("cx",300)
+		.attr("fill","red")
+		.attr("r",60)
+</script>
+</body>
+</html>
