@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>坐标轴</title>
+</head>
+<body>
+	<!-- d3.scaleLinear(),d3.scaleOrdinal()是一个匿名函数可以直接调用 -->
+	<!-- D3 提供了一个组件：d3.svg.axis()。可以帮助绘制刻度尺 -->
+	<script type="text/javascript" src="d3.min.js"></script>
+	<script type="text/javascript">
+		var width = 3000;
+		var height = 3000;
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("width",width)
+			.attr("height",height)
+
+		var dataset = [1.1,2.3,3.2,2.4,1.7];
+		var index = [0,1,2,3,4];
+		var color = ["red", "blue", "green", "yellow", "black"];
+		var rectHeight = 30;
+
+		// 线性比例尺
+		// var min = d3.min(dataset);   //求出数组中的最大值、最小值
+		// var max = d3.max(dataset);	
+		var linear = d3.scaleLinear()
+			.domain([0,d3.max(dataset)])        //设置定义域domain和值域range
+			.range([0,300])    //将dataset的值映射成10，300
+			// alert(linear(2.3))
+
+		// 序列比例尺
+		var ordinal = d3.scaleOrdinal()
+			.domain(index)
+			.range(color)
+			// alert(ordinal(2))    
+		
+		//开始绘制
+		svg.selectAll("rect")  
+			.data(dataset)   //绑定数据
+			.enter()
+			.append("rect")  //添加足够的所需元素
+			.attr("x",20)    //分别设置x,y,width,height,fill
+			.attr("y",function(d,i){
+				return i*rectHeight;
+			})
+			.attr("width",function(d,i) {	//分别调用线性比例尺linear()和序列比例尺ordinal()
+				return linear(d);
+			})
+			.attr("height",rectHeight-2)
+			.attr("fill",function(i){
+				return ordinal(i);
+				alert(ordinal(i))
+			})
+
+		//绘制坐标轴
+		var xAxis = d3.axisBottom()
+			.scale(linear)		//指定比例尺
+			// .orient("bottom")	//指定刻度的方向
+			.ticks(5);			//指定刻度的数量
+
+		svg.append("g")
+			.attr("class","xAxis")
+			.attr("transform","translate(20,160)")  //控制刻度的位置
+			.call(xAxis);
+	</script>
+</body>
+</html>

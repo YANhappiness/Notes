@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简单的图表</title>
+</head>
+<body>
+	<script type="text/javascript" src="d3.min.js"></script>
+	<script type="text/javascript">
+		var width = 800;
+		var height = 800;
+
+		var svg = d3.select("body")
+		.append("svg") //创建svg画布
+		.attr("width",width)
+		.attr("height",height)
+
+		var dataset = [240,110,150,100,300] //数据（表示矩形的宽度
+
+		var rectHeight = 25; //每个矩形所占像素的高度（包括空白
+
+		svg = svg.selectAll("rect") 	//选择svg内所有的数组
+			.data(dataset)			//绑定数组
+			.enter()				//制定选择集的enter部分
+			.append("rect")			//添加足够数量的矩形元素
+			.attr("x",20)			
+			.attr("y",function(d,i){
+				return i*rectHeight;
+			})
+			.attr("width",function(d){
+				return d;
+			})
+			.attr("height",rectHeight-2)
+			.attr("fill","steelblue");
+	</script>
+</body>
+</html>

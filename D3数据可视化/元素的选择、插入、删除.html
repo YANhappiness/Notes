@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>元素的选择、插入、删除</title>
+</head>
+<body>
+	<div class="d3">
+		<p>apple</p>
+		<p class="p2">pear</p>
+		<p id="myid">banana</p>
+		<a href="#" class="del">shanchu</a>
+	</div>
+
+	<script type="text/javascript" src="d3.min.js"></script>
+	<script type="text/javascript">
+
+	// 关于 select 和 selectAll 的参数，
+	// 是符合 CSS 选择器的条件的，即用“井号（#）”表示 id，用“点（.）”表示 class。
+		// 选中第一个元素
+		var p1 = d3.select("p");
+		p1.style("color","red");
+		// 选中第二个元素
+		var p2 = d3.select(".p2");
+		p2.style("text-decoration","line-through");
+		// 全选元素元素
+		var p = d3.selectAll("p");
+		p.style("background-color","#999");
+
+		// 插入元素
+		// append()：在选择集末尾插入元素
+		// insert()：在选择集前面插入元素
+
+		var body = d3.select("body");
+		body.append("p").text("this p is append");
+
+		var d3 = d3.select(".d3");
+		d3.insert("p",".p2").text("this p is insert");
+
+
+		// 删除元素
+		var del = d3.select(".del");
+		del.remove();
+
+
+
+
+
+		
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>折线图</title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <style>
+    .container {
+        margin: 30px auto;
+        width: 600px;
+        height: 300px;
+        border: 1px solid #000;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <svg width="100%" height="100%"></svg>
+    </div>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+    window.onload = function() {
+        var width = 600,
+            height = 300;
+        // SVG画布边缘与图表内容的距离
+        var padding = { top: 50, right: 50, bottom: 50, left: 50 };
+        // 创建一个分组用来组合要画的图表元素
+        var main = d3.select('.container svg')
+            .append('g')
+            .attr({ "class": "main", "transform": "translate(" + padding.top + "," + padding.left + ")" })
+
+        var dataset = [
+            { x: 0, y: 11 }, { x: 1, y: 35 },
+            { x: 2, y: 23 }, { x: 3, y: 78 },
+            { x: 4, y: 55 }, { x: 5, y: 18 },
+            { x: 6, y: 98 }, { x: 7, y: 100 },
+            { x: 8, y: 22 }, { x: 9, y: 65 }
+        ];
+        var getColor = ["black","#00f","#123","#456","#4567","#1235","#ffc","#aac","#456","#768"]
+        var xScale = d3.scale.linear() //创建x轴比例尺
+            .domain(d3.extent(dataset, function(d, i) {
+                return d.x;
+            }))
+            .range([0, width - padding.left - padding.right]);
+
+        var yScale = d3.scale.linear() //创建y轴比例尺
+            .domain(d3.extent(dataset, function(d, i) {
+                return d.y;
+            }))
+            .range([height - padding.top - padding.bottom, 0])
+
+        var xAxis = d3.svg.axis() //创建x轴
+            .scale(xScale)
+            .orient('bottom')
+
+        var yAxis = d3.svg.axis() //创建y轴
+            .scale(yScale)
+            .orient('left')
+
+        main.append('g')      
+            .attr('class', 'axis')
+            .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
+            .call(xAxis);
+
+        main.append('g')
+            .attr("class", "axis")
+            .call(yAxis)
+
+        //绘制折线
+        var line = d3.svg.line()
+            .x(function(d,i){
+                return xScale(d.x)
+            })
+            .y(function(d,i){
+                return yScale(d.y)
+            })
+            .interpolate('linear') //添加线条类型
+
+        main.append('path')         //
+            .attr('class', "line")
+            .attr('d', line(dataset))
+            .attr("fill","none")
+            .attr("stroke","#ccc")
+            .attr("stroke-width","2")
+
+        // 添加点
+        main.selectAll('circle')
+            .data(dataset)
+            .enter()
+            .append('circle')
+            .attr('cx', function(d) {
+              return xScale(d.x);
+            })
+            .attr('cy', function(d) {
+              return yScale(d.y);
+            })
+            .attr('r', 5)
+            .attr('fill', function(d, i) {
+              return getColor[i];
+            });
+    };
+
+    </script>
+</body>
+
+</html>

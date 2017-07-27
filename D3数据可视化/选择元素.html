@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>d3选择元素</title>
+</head>
+<body>
+	<div>
+		<p>hello world</p>
+		<p>hello world</p>
+	</div>
+
+	<!-- d3.js -->
+	<script type="text/javascript" src="d3.min.js"></script>
+	<script type="text/javascript">
+		var p = d3.select("body").selectAll("p").text("hello d3");
+		p.style("color","red");
+		p.style("font-size","72px")
+
+/*使用 d3.select() 或 d3.selectAll() 选择元素后返回的对象，就是选择集。
+另外，有人会发现，D3 能够连续不断地调用函数，形如：
+d3.select().selectAll().text()
+这称为链式语法，和 JQuery 的语法很像.*/
+
+//var body = d3.select("body"); //选择文档中的body元素
+//var p1 = body.select("p");      //选择body中的第一个p元素
+//var p = body.selectAll("p");    //选择body中的所有p元素
+//var svg = body.select("svg");   //选择body中的svg元素
+//var rects = svg.selectAll("rect");  //选择svg中所有的svg元素
+
+	</script>
+</body>
+</html>

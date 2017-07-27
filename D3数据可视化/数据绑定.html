@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据绑定</title>
+</head>
+<body>
+<!-- 
+	D3 有一个很独特的功能：能将数据绑定到 DOM 上，也就是绑定到文档上。这么说可能不好理解，例如网页中有段落元素 p 和一个整数 5，于是可以将整数 5 与 p 绑定到一起。绑定之后，当需要依靠这个数据才操作元素的时候，会很方便。
+
+	D3 中是通过以下两个函数来绑定数据的：
+
+	datum()：绑定一个数据到选择集上
+	data()：绑定一个数组到选择集上，数组的各项值分别与选择集的各元素绑定 -->
+
+
+	<div class="d3">
+		<p>apple</p>
+		<p>pear</p>
+		<p>banana</p>
+	</div>
+
+	<ul>
+		<li>apple</li>
+		<li>pear</li>
+		<li>banana</li>
+	</ul>
+	<script type="text/javascript" src="d3.min.js"></script>
+	<script type="text/javascript">
+		var str = "hello";
+		var body = d3.select("body");
+		var p = body.selectAll("p");
+		p.datum(str);
+		p.text(function(d,i){
+			return "第"+i+"个元素绑定的数据是"+d;
+		})
+	</script>
+
+<!-- 	用到了一个无名函数 function(d, i)。当选择集需要使用被绑定的数据时，常需要这么使用。其包含两个参数，其中：
+
+d 代表数据，也就是与某元素绑定的数据。
+i 代表索引，代表数据的索引号，从 0 开始。 -->
+
+	<script type="text/javascript">
+		var dataset = ['hello apple','hello pear','hello banana'];
+		var body = d3.select("body");
+		var li = body.selectAll("li")
+			.data(dataset)
+			.text(function(d,i){
+			return d;
+		})
+	</script>
+
+</body>
+</html>
