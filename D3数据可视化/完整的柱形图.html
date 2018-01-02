@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>完整的柱形图</title>
+    <style type="text/css">
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+    .axis text {
+        font-family: sans-serif;
+        font-size: 14px;
+    }
+
+    .myText {
+        fill: white;
+        text-anchor: middle;
+    }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/d3/3.0.0/d3.min.js"></script>
+    <script type="text/javascript">
+    var svgWidth = 400;
+    var svgHeight = 400;
+    var svgPadding = { left: 30, right: 30, top: 20, bottom: 20 }
+
+    var svg = d3.select("body")
+        .append('svg')
+        .style({ "width": svgWidth, "height": svgHeight, "class": "mainSvg" })
+
+    //定义数据和比例尺
+    var svgData = [5, 12, 23, 45, 18, 32, 51, 61, 26, 80];
+    var svgColor = ["#ccc", "#123", "#234", "#acd", "#cad", "#abc", "#678", "#cbd", "#def", "#fde"];
+
+    // 序列比例尺  绑定颜色
+    var color = d3.scale.ordinal()
+        .domain(svgData)
+        .range(svgColor)
+
+    var xScale = d3.scale.ordinal()   //x轴比例尺
+        .domain(d3.range(svgData.length))
+        .rangeRoundBands([0, svgWidth - svgPadding.left - svgPadding.right]);
+
+    var yScale = d3.scale.linear()   //y轴比例尺
+        .domain([0, d3.max(svgData)])
+        .range([(svgHeight - svgPadding.top - svgPadding.bottom), 0])
+
+    //绘制x、y轴
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient("bottom")
+
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left")
+
+    //添加x,y轴
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + svgPadding.left + "," + (svgHeight - svgPadding.bottom) + ")")
+        .call(xAxis);
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + svgPadding.left + "," + svgPadding.top + ")")
+        .call(yAxis)
+
+    //添加矩形和文字
+    var rectPadding = 4; //矩形间空白
+    var rects = svg.selectAll(".myRect")
+        .data(svgData)
+        .enter()
+        .append("rect")
+        .attr("class", "myRect")
+        .attr("transform", "translate(" + svgPadding.left + "," + svgPadding.top + ")")
+        .attr("x", function(d, i) {
+            return xScale(i) + rectPadding / 2
+        })
+        .attr("y", function(d, i) {
+            return yScale(d)
+        })
+        .attr("width", xScale.rangeBand() - rectPadding)
+        .attr("height", function(d, i) {
+            return svgHeight - svgPadding.top - svgPadding.bottom - yScale(d)
+        })
+        .attr("fill", function(d, i) {
+            return color(i)
+        })
+
+    var texts = svg.selectAll(".myText")
+        .data(svgData)
+        .enter()
+        .append("text")
+        .attr("class", "myText")
+        .attr("transform", "translate(" + svgPadding.left + "," + svgPadding.top + ")")
+        .attr("x", function(d, i) {
+            return xScale(i) + rectPadding / 2
+        })
+        .attr("y", function(d, i) {
+            return yScale(d)
+        })
+        .attr("dx", function(d, i) {
+            return (xScale.rangeBand() - rectPadding) / 2
+        })
+        .attr("dy", function(d, i) {
+            return 20
+        })
+        .text(function(d) {
+            return d;
+        })
+    </script>
+</body>
+
+</html>
