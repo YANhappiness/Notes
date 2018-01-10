@@ -39,3 +39,4 @@ Book.prototype = {
         console.log("show");
     },
 };
+
