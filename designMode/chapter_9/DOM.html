@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #dom{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="dom"></div>
+    <script src="./addEvent.js"></script>
+    <script>
+        var oDom = document.getElementById("dom");
+
+        //DOM0 级事件绑定方法会将方法覆盖
+        oDom.onclick = function(){
+            console.log("111111");
+        }
+
+        oDom.onclick = function(){
+            console.log("222222");
+        }
+
+        // DOM2级 可以反复为元素绑定事件，不会覆盖  
+        // addEventListener 兼容 firefox chrome  IE9+
+        // attachEvent 兼容 IE9-
+        oDom.addEventListener("click",function(params) {
+            console.log("addEventListener__111111");
+        })
+
+        oDom.addEventListener("click",function(params) {
+            console.log("addEventListener_222222");
+        })
+
+        addEvent(oDom,"click",function(){
+            console.log("require js");
+        });
+    </script>
+</body>
+</html>
