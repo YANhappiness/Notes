@@ -41,7 +41,6 @@ console.log(SubClass.prototype instanceof SuperClass);  //true
 console.log(instance instanceof Object);  //true  Object是所有对象的实例   
 
 //缺点： 类式继承，子类通过其prototype对父类实例化，继承了父类，所以说父类中的共有属性是引用类型的话，将在子类中被多有实例共有
-
 function SuperClass1(){
     this.book= ['javascript','html','css'];
 }
