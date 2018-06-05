@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./jquery.mousewheel.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <svg id="main_svg" width="400" height="400" style="border:1px solid #ccc;"></svg>
+    <script>
+        //遮罩层
+        d3.select("#main_svg").append("clipPath")
+            .attr("id", "select_clip")
+            .append("rect")
+            .attr({
+                width: 120,
+                height: 100,
+                rx: 3
+            })
+        // selected
+        d3.select("#main_svg").append("g")
+            .attr({
+                class: "selected_wrap",
+                transform: "translate(80,200)",
+                state: 0
+            }).each(function () {
+                d3.select(this)
+                    .append("rect")
+                    .attr({
+                        fill: "white",
+                        height: 25,
+                        width: 120,
+                        stroke: "black",
+                        "stroke-width": "1",
+                        rx: 3,
+                    });
+
+                d3.select(this).append("text")
+                    .attr({
+                        "text-anchor": "middle",
+                        x: 60,
+                        y: 20,
+                        fill: "black",
+                        "font-size": "20px",
+                    })
+                    .text("16K")
+
+                $(this).click(function () {
+                    var s = parseInt($(this).attr("state"));
+                    if (s == 0) {
+                        selectItem_open();
+                    } else {
+                        selectItem_close();
+                    }
+                })
+            })
+        // 可选项
+        d3.select("#main_svg").append("g")
+            .attr({
+                transform: "translate(80,100)",
+                "clip-path": "url(#select_clip)",
+            })
+            .append("g")
+            .attr({
+                "class": "select_wrap",
+                transform: "translate(0,0)"
+            })
+            .selectAll("g")
+            .data(['2K', '4K', '8K', '16K', '32K', '64K', '128K', '256K', '512K', '1024K'])
+            .enter()
+            .append("g")
+            .attr({
+                class: "select_item",
+                transform: function (d, i) {
+                    return "translate(0," + i * 25 + ")";
+                },
+                i: function (d, i) {
+                    return 14 - i
+                }
+            })
+            .each(function (d, i) {
+                d3.select(this).append("rect")
+                    .attr({
+                        fill: "white",
+                        height: 25,
+                        width: 120,
+                        stroke: "black",
+                        "stroke-width": 1,
+                    })
+                d3.select(this).append("text")
+                    .attr({
+                        "text-anchor": "middle",
+                        x: 60,
+                        y: 20,
+                        fill: "black",
+                        "font-size": "20px"
+                    })
+                    .text(function (d, i) {
+                        return d;
+                    })
+                //可选菜单
+                $(this).click(function () {
+                    var i = parseInt($(this).attr("i"));
+                    $(".selected_wrap text").text($(this).find("text").text());
+                    selectItem_close();
+                })
+
+                $(".select_wrap").hide();
+            })
+
+        function selectItem_open() {
+            $(".select_wrap").show();
+            $(".selected_wrap").attr("state", "1");
+        }
+
+        function selectItem_close() {
+            $(".select_wrap").hide();
+            $(".selected_wrap").attr("state", "0");
+        }
+        
+        //滚轮事件
+        $(".select_wrap").mousewheel(function (event, delta) {
+            stopBrowser.stop();
+            var p = $(".select_wrap").attr("transform").match(/[-]?\d+/g);
+            p[1] = parseInt(p[1]) + delta * 25;
+            if (p[1] > 0) {
+                p[1] = 0;
+            } else if (p[1] < -150) {
+                p[1] = -150;
+            }
+            $(".select_wrap").attr("transform", "translate(" + p[0] + "," + p[1] + ")");
+        });
+
+        //阻止浏览器的默认行为 
+        function stopDefault(e) {
+            //阻止默认浏览器动作(W3C) 
+            if (e && e.preventDefault)
+                e.preventDefault();
+            //IE中阻止函数器默认动作的方式 
+            else
+                window.event.returnValue = false;
+            return false;
+        }
+
+        function stopBubble(e) {
+            //如果提供了事件对象，是非IE浏览器 
+            if (e && e.stopPropagation)
+                //使用W3C的stopPropagation()方法 
+                e.stopPropagation();
+            else
+                //使用IE的cancelBubble = true来取消事件冒泡 
+                window.event.cancelBubble = true;
+        }
+
+        var stopBrowser = {
+            stop: function (e) {
+                stopDefault(e);
+                stopBubble(e);
+            }
+        };
+    </script>
+</body>
+
+</html>
