@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素的应用</title>
+
+    <style>
+        /* 1 清缓存 */
+
+        .clear::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .clear {
+            border: 1px solid red;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            float: left;
+        }
+
+        /* 2 分割线*/
+
+        .spliter::before,
+        .spliter::after {
+            content: "";
+            display: inline-block;
+            border-top: 1px solid #000;
+            width: 200px;
+            margin: 5px;
+        }
+
+        /* 3 增加点击区域 */
+
+        .btn::before {
+            content: "";
+            display: inline-block;
+            
+        }
+
+        /* 4  计数器*/
+
+        .chooses {
+            counter-reset: letters;
+        }
+
+        .chooses input:checked {
+            counter-increment: letters;
+        }
+
+        .choose span:after {
+            content: counter(letters);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1 -->
+    <div class="clear">
+        <div class="box"></div>
+    </div>
+
+    <br/>
+
+    <!-- 2 -->
+    <div>
+        <p class="spliter">分割线</p>
+    </div>
+
+    <br/>
+
+    <!-- 3 -->
+    <div>
+        <!-- <input type="button" value="按钮" class="btn"> -->
+        <div class="btn">按钮</div>
+    </div>
+
+    <br/>
+
+    <!-- 4 -->
+    <div class="chooses">
+        <input type="checkbox">a
+        <input type="checkbox">b
+        <input type="checkbox">c
+        <input type="checkbox">d
+        <input type="checkbox">e
+        <input type="checkbox">f
+        <input type="checkbox">g
+        <input type="checkbox">h
+        <input type="checkbox">i
+        <input type="checkbox">j
+    </div>
+    <p class="choose">我选择了
+        <span></span>个字母</p>
+    <br/>
+
+    <div>
+
+    </div>
+
+    <script>
+        var oBtn = document.querySelector(".btn");
+        oBtn.addEventListener("click",function(){
+            console.log("hhhhhhh");
+        });
+    </script>
+</body>
+
+</html>
