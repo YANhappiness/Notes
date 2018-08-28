@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>grid -- 布局</title>
+
+    <style>
+        body {
+            padding: 50px;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 100px 10px 100px 10px 100px 10px 100px 10px 100px;
+            grid-template-rows: auto 10px auto 10px auto 10px auto 10px;
+        }
+
+        .box {
+            background-color: #444;
+            color: #fff;
+            font-size: 150%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .a {
+            /* grid-column: 1 / 4;
+            grid-row: 1 / 2; */
+            grid-area: 1 / 1 / 2 / 4;
+        }
+
+        .b {
+            grid-column: 5/6;
+            grid-row: 1/4;
+        }
+
+        .c {
+            grid-column: 1/2;
+            grid-row: 3/6;
+        }
+
+        .d {
+            grid-column: 3;
+            grid-row: 3;
+            background: orange;
+        }
+
+        .e {
+            grid-column: 3/6;
+            grid-row: 5;
+        }
+
+        .f {
+            grid-column: 7/8;
+            grid-row: 1/6;
+            background-color: #5e705e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box a">A</div>
+        <div class="box b">B</div>
+        <div class="box c">C</div>
+        <div class="box d">D</div>
+        <div class="box e">E</div>
+        <div class="box f">F</div>
+    </div>
+</body>
+
+</html>
