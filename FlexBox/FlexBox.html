@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FlexBox</title>
+
+    <style>
+        ul {
+            display: flex;
+            flex-direction: row;
+            /* flex-wrap: wrap; */
+            /* flex-flow: row wrap; */
+            /* justify-content: space-around; */
+            /* align-items: stretch; */
+            /* align-content: center; */
+            border: 1px solid red;
+            width: 800px;
+            height: 400px;
+            padding: 0;
+        }
+
+        li {
+            /* width: 200px; */
+            /* height: 200px; */
+            background-color: #8cacea;
+            margin: 8px;
+            list-style: none;
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+        }
+
+        li {
+            /* align-self: flex-start; */
+        }
+
+        li:nth-child(1) {
+            /* order: 2; */
+            /* flex-grow: 1; */
+            /* flex-shrink: 2; */
+            /* flex-basis:200px; */
+            /* flex: 1 1 auto; */
+            /* flex: 2; */
+            align-self: auto;
+        }
+
+        /* li:nth-child(2){
+            flex: 1 1 0;
+            background-color: red;
+        } */
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 11 1 11 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 11
+            1 11 11</li>
+        <!-- <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li> -->
+    </ul>
+
+    <script>
+    </script>
+</body>
+
+</html>

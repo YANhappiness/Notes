@@ -1,0 +1,108 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-clip: #ffffff;
+    margin: 0;
+    font-family: Lato, sans-serif;
+    color: #222222;
+    font-size: 0.9em;
+}
+
+main {
+    flex: 1 0 auto;
+    /*填满剩余空间*/
+    display: flex;
+}
+
+aside {
+    flex: 0 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+aside i.fa {
+    font-size: 0.9em;
+}
+
+.content {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+}
+
+.music-head {
+    flex: 0 0 280px;
+    display: flex;
+    padding: 40px;
+    background-color: #4e4e4e;
+}
+
+.music-list {
+    flex: 1 0 auto;
+    list-style-type: none;
+    padding: 5px 10px 0px;
+}
+
+li {
+    display: flex;
+    padding: 0 20px;
+    min-height: 50px;
+}
+
+li p {
+    flex: 0 0 25%;
+}
+
+li span.catty-cloud {
+    border: 1px solid black;
+    font-size: 0.6;
+    padding: 3px;
+}
+
+li:nth-child(2) {
+    background-color: #f2f2f2;
+}
+
+.catty-music {
+    flex: 1 0 auto;
+    display: flex;
+    font-weight: 300;
+    color: #fff;
+    padding-left: 50px;
+}
+
+.catty-music div:nth-child(1){
+    margin-bottom: auto;
+}
+
+.catty-music div:nth-child(2) i.fa{
+    font-size:0.9em;
+    padding: 0 0.7em;
+    font-weight: 300;
+}
+
+.catty-music div:nth-child(1) p:first-child{
+    font-size:1.8em;
+    margin: 0 0 10px;
+}
+
+.catty-music div:nth-child(1) p:nth(:first-child){
+    font-size:0.9em;
+    margin:2px 0;
+}
+
+footer {
+    flex: 0 0 90px;
+    /*不会放大或缩小-只会固定在90px高度*/
+    padding: 10px;
+    color: #ffffff;
+    background-color: rgba(61, 100, 158, 0.9);
+}
