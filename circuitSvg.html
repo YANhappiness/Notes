@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG 电路图型</title>
+    <style>
+        html,
+        body,
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <svg>
+        <!-- 电阻 -->
+        <path transform="translate(20,100)" d="M0 50 L30 50 L30 40 L70 40 L70 50L100 50 M30 50 L30 60 L70 60 L70 50"
+            fill="transparent" stroke="red" />
+
+        <!-- 电容 -->
+        <path transform="translate(140,100)" d="M0 50 L40 50 M40 30 L40 70 M60 30 L60 70 M60 50L100 50" fill="transparent"
+            stroke="red" />
+
+        <!-- 电感 -->
+        <path transform="translate(260,100)" d="M0 50 L30 50 M30 50 Q40 30,40 50T50 50 T60 50,T70 50M70 50 L100 50" fill="transparent"
+            stroke="red" />
+
+        <!-- 二极管 -->
+        <path transform="translate(380,100)" d="M0 50 L30 50M30 30 L30 70 M40 45 L40 55 M50 40 L50 60 M60 35 L60 65 M70 30 L70 70 M70 50 L100 50"
+            fill="transparent" stroke="red" />
+
+        <!-- 集成运放 -->
+        <path transform="translate(520,100)" d="M0 40 L20 40 M0 60 L20 60 M20 25L80 50L20 75Z M22 40L32 40 M27 35L27 45 M22 60L32 60 M80 50 L100 50"
+            fill="transparent" stroke="red"></path>
+        <!-- 电源 -->
+        <path transform="translate(640,100)" d="M0 50 L45 50 M45 40 L45 60 M55 30 L55 70 M55 50 L100 50" fill="transparent"
+            stroke="red" />
+        <!-- 信号源 -->
+        <path transform="translate(760,100)" d="M0 50 L20 50 L20 25 L80 25 L80 50L100 50 M20 50 L20 75 L80 75 L80 50 M25 48L25 35L35 35L35 48L45 48L45 35L55 35L55 48L65 48L65 35L75 35L75 48M25 68Q30 44,35 60T45 60T55 60T65 60T75 68"
+            fill="transparent" stroke="red" />
+    </svg>
+</body>
+
+</html>
