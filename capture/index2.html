@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>截图-支持svg图片</title>
+
+    <style>
+        /* .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="capture">截图</button>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="width:300px;height:150px;">
+            <image width="100" height="100" preserveaspectratio="none meet" xlink:href="./image/test.png"></image>
+            <circle r="20" cx="100" cy="100" stroke="black" fill="red"></circle>
+        </svg>
+
+        <a id="down_button" style="display:none"></a>
+    </div>
+
+    <script src="./src/jquery-1.11.1.min.js"></script>
+<!-- 
+    <script src="./src/rgbcolor.js"></script>
+    <script src="./src/StackBlur.js"></script> -->
+    <script src="./src/canvg.min.js"></script>
+    <script src="./src/html2canvas.min.js"></script>
+
+    <script>
+        var oBtn = document.querySelector(".capture");
+
+        oBtn.addEventListener("click", function () {
+            // 转化成canvas
+            var targetDom = $("body");
+            var copyDom = targetDom.clone();
+            copyDom.find('svg').each(function (index, node) {
+                var parentNode = node.parentNode;
+                var svg = node.outerHTML.trim();
+                var canvas = document.createElement('canvas');
+                canvg(canvas, svg, {
+                    ignoreAnimation: false,
+                    log: true
+                });
+                if (node.style.position) {
+                    canvas.style.position += node.style.position;
+                    canvas.style.left += node.style.left;
+                    canvas.style.top += node.style.top;
+                }
+                parentNode.removeChild(node);
+                $(parentNode).prepend($(canvas));
+            });
+
+            $('html').prepend(copyDom);
+            // targetDom.hide();
+
+            // 将canvas保存成图片并下载
+            // setTimeout(function () {
+                html2canvas(copyDom, {
+                    allowTaint: true,
+                    taintTest: false,
+                    background: '#fff',
+                    logging: true,
+                    onrendered: function (canvas) {
+                        var timestamp = Date.parse(new Date());
+                        $('#down_button').attr('href', canvas.toDataURL());
+                        $('#down_button').attr('download', timestamp + '.png');
+                        var fileObj = document.getElementById("down_button");
+                        // fileObj.click();
+
+                        // copyDom.remove();
+                        targetDom.show();
+                    }
+                });
+            // }, 500);
+        });
+    </script>
+</body>
+
+</html>
