@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HtmlToSvg - 从html拖放到svg区域 </title>
+    <link href="https://cdn.bootcss.com/jqueryui/1.11.1/jquery-ui.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.bootcss.com/d3/3.3.9/d3.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body,
+        svg,
+        .container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dragWrap {
+            height: 120px;
+            width: 100%;
+            border: 1px solid salmon;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dropWrap {
+            height: calc(100vh - 130px);
+            width: 100%;
+            border: 1px solid rebeccapurple;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="dragWrap">
+            <img src="https://static.easyicon.net/preview/115/1154523.gif" class="dragImg" ms="0" alt="pic">
+            <img src="https://static.easyicon.net/preview/115/1154523.gif" class="dragImg" ms="1" alt="pic">
+        </div>
+        <div class="dropWrap">
+            <svg class="svgArea" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                preserveAspectRatio="xMinYMin meet">
+                <g>
+                    <rect class="dropRect" width="200" height="200" x="20" y="20" fill="#c0c0c0"></rect>
+                    <rect class="dropRect" width="200" height="200" x="240" y="20" fill="#c0c0c0"></rect>
+                    <rect class="dropRect" width="200" height="200" x="460" y="20" fill="#c0c0c0"></rect>
+                    <rect class="dropRect" width="200" height="200" x="680" y="20" fill="#c0c0c0"></rect>
+                </g>
+                <g class="imageWrap">
+
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        var dragObj = "";
+        var dropObj = "";
+
+        // jq-ui 允许从html拖出
+        $(".dragImg").draggable({
+            cancel: "a.ui-icon",
+            containment: "document",
+            helper: "clone",
+            cursor: "move",
+            zIndex: 9999,
+            scroll: false,
+            cursorAt: { left: -2 },
+            // appendTo: ".laletteList",
+            start: function (event, ui) {
+                dragObj = $(ui.helper[0]);
+            },
+            stop: function (event, ui) {
+                dragObj = "";
+            }
+        });
+
+        // html放置区域情况下下面代码起作用，但是svg区域是失效的
+        $(".svgArea").droppable({
+            accept: ".dropRect",
+            drop: function (event, ui) {
+                console.log(event, ui);
+            }
+        });
+
+        /**
+         *  辅助鼠标移入、移出、弹起时间模拟jq-ui的droppable行为
+         * 
+         *  分为4个阶段：
+         * 1. draggable 记录拖出元素对象
+         * 2. mouseover 记录放置当前区域信息
+         * 3. mouseout  清空放置区域记录
+         * 4. mouseup   鼠标抬起时放置元素
+         */
+
+        $(".dropRect").on("mouseup", function () {
+            if (dragObj !== "" && dropObj !== "") {
+                var x = $(dropObj).attr("x");
+                var y = $(dropObj).attr("y");
+                var href = $(dragObj).attr("src");
+
+                d3.select(".imageWrap")
+                    .append("image")
+                    .attr({
+                        x: function () {
+                            return x;
+                        },
+                        y: function () {
+                            return y;
+                        },
+                        "xlink:href": function () {
+                            return href;
+                        },
+                        preserveAspectRatio: "none",
+                        width: 200,
+                        height: 200,
+                    });
+                // console.log($(dragObj));
+                // console.log($(dropObj));
+            }
+        });
+
+        $(".dropRect").on("mouseover", function () {
+            if (dragObj !== "") {
+                dropObj = $(this);
+            }
+        });
+
+        $(".dropRect").on("mouseout", function () {
+            if (dragObj !== "") {
+                dropObj = "";
+            }
+        });
+    </script>
+</body>
+
+</html>
